@@ -4,7 +4,7 @@
 - 修改默认IP为10.10.10.1，密码：password。
 
 不定期编译，需要的在 [release](https://github.com/KevinZjYang/OpenWrt-x86_64/releases)下载。
-## Acknowledgments
+## 鸣谢
 
 - [Microsoft](https://www.microsoft.com)
 - [Microsoft Azure](https://azure.microsoft.com)
