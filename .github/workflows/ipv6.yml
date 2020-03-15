@@ -11,11 +11,11 @@ name: Build ipv6 OpenWrt
 on:
   release:
     types: published
-  push:
-    branches:
-      - master
-    paths:
-      - 'ipv6.config'
+#  push:
+#    branches:
+#      - master
+#    paths:
+#      - 'ipv6.config'
 #  schedule:
 #    - cron: 0 8 * * 5
 #  watch:
