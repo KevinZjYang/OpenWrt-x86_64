@@ -1,6 +1,6 @@
 # 自动编译Lean's OpenWrt
 - 支持IPv6
-- 包含内置所有主题
+- 包含内置的所有主题
 - 修改默认IP为10.10.10.1，密码：password。
 
 不定期编译，需要的在 [release](https://github.com/KevinZjYang/OpenWrt-x86_64/releases)下载。
