@@ -107,7 +107,7 @@ jobs:
         echo "::set-output name=status::success"
         
     - name: Upload to release
-      uses: svenstaro/svenstaro/upload-release-action@v1-release
+      uses: svenstaro/upload-release-action@v1-release
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
