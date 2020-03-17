@@ -113,7 +113,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ${{ env.FIRMWARE }}
-        asset_name: ${OpenWrt_firmware_{github.ref}}
+        asset_name: OpenWrt_firmware ${{github.ref}}
         tag: ${{ github.ref }}
         overwrite: true
 
