@@ -105,10 +105,21 @@ jobs:
         rm -rf packages
         echo "::set-env name=FIRMWARE::$PWD"
         echo "::set-output name=status::success"
-
-    - name: Upload firmware directory
-      uses: actions/upload-artifact@master
+        
+    - name: Upload to release
+      uses: svenstaro/svenstaro/upload-release-action@v1-release
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: OpenWrt_firmware
-        path: ${{ env.FIRMWARE }}
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ${{ env.FIRMWARE }}
+        asset_name: OpenWrt_firmware
+        tag: ${{ github.ref }}
+        overwrite: true
+
+    #- name: Upload firmware directory
+    #  uses: actions/upload-artifact@master
+    #  if: steps.organize.outputs.status == 'success' && !cancelled()
+    #  with:
+    #    name: OpenWrt_firmware
+    #    path: ${{ env.FIRMWARE }}
+    
