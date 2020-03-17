@@ -30,6 +30,7 @@ env:
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   TZ: Asia/Shanghai
+  super_secret: ${{secrets.PERSONAL_TOKEN}}
 
 jobs:
   build:
@@ -110,7 +111,7 @@ jobs:
       uses: svenstaro/upload-release-action@1.0.1
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ env.super_secret }}
         file: ./openwrt/bin/targets/x86/64/openwrt.zip
         asset_name: OpenWrt_${{github.ref}}.zip
         tag: ${{ github.ref }}
