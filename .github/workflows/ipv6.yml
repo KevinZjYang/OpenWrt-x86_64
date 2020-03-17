@@ -107,12 +107,12 @@ jobs:
         echo "::set-output name=status::success"
         
     - name: Upload to release
-      uses: svenstaro/upload-release-action@v1-release
+      uses: svenstaro/upload-release-action@1.0.1
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ${{ env.FIRMWARE }}
-        asset_name: OpenWrt_firmware
+        asset_name: ${OpenWrt_firmware_{github.ref}}
         tag: ${{ github.ref }}
         overwrite: true
 
