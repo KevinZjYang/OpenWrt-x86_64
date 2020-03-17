@@ -3,6 +3,8 @@
 - 包含内置的所有主题
 - 修改默认IP为10.10.10.1，密码：password。
 
+创建release后开始运行，编译完成后生成的包自动上传到release。
+
 不定期编译，需要的在 [release](https://github.com/KevinZjYang/OpenWrt-x86_64/releases)下载。
 ## 鸣谢
 
