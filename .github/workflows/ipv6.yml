@@ -101,10 +101,9 @@ jobs:
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
-        cd openwrt/bin/targets/*/*
+        cd openwrt/bin/targets/x86/64
         rm -rf packages
         zip openwrt.zip openwrt-x86-64-combined-squashfs.img
-        echo "::set-env name=FIRMWARE::$PWD"
         echo "::set-output name=status::success"
         
     - name: Upload to release
@@ -112,7 +111,7 @@ jobs:
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ${{ env.FIRMWARE }}/openwrt.zip
+        file: ./openwrt/bin/targets/x86/64/openwrt.zip
         asset_name: OpenWrt_${{github.ref}}.zip
         tag: ${{ github.ref }}
         overwrite: true
