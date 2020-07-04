@@ -129,7 +129,7 @@ jobs:
       run: |
         cd openwrt/bin/targets/x86/64
         rm -rf packages
-        zip openwrt.zip openwrt-x86-64-combined-squashfs.img
+        zip openwrt.zip openwrt-x86-64-generic-squashfs-combined.img
         echo "::set-output name=status::success"
         
     - name: Upload to release
