@@ -1,16 +1,16 @@
-#=================================================
+#
+# Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
+#
+# This is free software, licensed under the MIT License.
+# See /LICENSE for more information.
+#
 # https://github.com/P3TERX/Actions-OpenWrt
 # Description: Build OpenWrt using GitHub Actions
-# Lisence: MIT
-# Author: P3TERX
-# Blog: https://p3terx.com
-#=================================================
+#
 
-name: Build ipv6 OpenWrt
+name: Build X86(64bit) OpenWrt
 
 on:
-  release:
-    types: published
   repository_dispatch:
   workflow_dispatch:
     inputs:
@@ -26,14 +26,12 @@ env:
   CONFIG_FILE: ipv6.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
-  SSH_ACTIONS: false
-  UPLOAD_BIN_DIR: false
+  UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
-  UPLOAD_COWTRANSFER: false
+  UPLOAD_COWTRANSFER: true
   UPLOAD_WETRANSFER: false
-  UPLOAD_RELEASE: true
+  UPLOAD_RELEASE: false
   TZ: Asia/Shanghai
-  #super_secret: ${{secrets.PERSONAL_TOKEN}}
 
 jobs:
   build:
@@ -80,6 +78,7 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        cat config/X86/x86-extra.config >> openwrt/.config
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
@@ -179,7 +178,7 @@ jobs:
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
       with:
-        retain_days: 1
+        retain_days: 14
         keep_minimum_runs: 3
 
     - name: Remove old Releases
@@ -190,4 +189,3 @@ jobs:
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
